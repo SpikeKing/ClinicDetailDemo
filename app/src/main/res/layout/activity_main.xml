@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="gotoClinicDetail"
-        android:text="@string/goto_search_clinic"/>
+        android:text="@string/goto_clinic_detail"/>
 
 </LinearLayout>

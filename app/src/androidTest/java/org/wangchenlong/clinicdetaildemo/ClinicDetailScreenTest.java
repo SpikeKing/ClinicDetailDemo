@@ -46,6 +46,9 @@ public class ClinicDetailScreenTest {
                 }
             };
 
+    /**
+     * 显示科室详情页面
+     */
     @Test
     public void showClinicDetailScreen() {
         // 显示科室标题
@@ -65,6 +68,9 @@ public class ClinicDetailScreenTest {
                 .check(matches(isDisplayed()));
     }
 
+    /**
+     * 关闭科室详情页面, 跳转至前一页
+     */
     @Test
     public void gotoBeforeScreen() {
         // 点击返回按钮
@@ -73,6 +79,9 @@ public class ClinicDetailScreenTest {
         assertTrue(mActivityTestRule.getActivity().isFinishing());
     }
 
+    /**
+     * 点击相关疾病Tab, 显示疾病列表
+     */
     @Test
     public void clickRelatedDiseasesTab_ShowDiseasesList() {
         onView(withText(R.string.related_diseases_tab)).perform(click());
@@ -88,6 +97,9 @@ public class ClinicDetailScreenTest {
         }
     }
 
+    /**
+     * 点击明星医院Tab, 显示医院列表
+     */
     @Test
     public void clickStarHospitalsTab_ShowHospitalsList() {
         onView(withText(R.string.star_hospital_tab)).perform(click());
@@ -103,6 +115,9 @@ public class ClinicDetailScreenTest {
         }
     }
 
+    /**
+     * 点击相关疾病的列表项, 提示信息
+     */
     @Test
     public void clickRelatedDiseasesList_ShowToast() {
         onView(withText(R.string.related_diseases_tab)).perform(click());
@@ -127,6 +142,9 @@ public class ClinicDetailScreenTest {
         }
     }
 
+    /**
+     * 点击明星医院的列表项, 提示信息
+     */
     @Test
     public void clickStarHospitalList_ShowToast() {
         onView(withText(R.string.star_hospital_tab)).perform(click());

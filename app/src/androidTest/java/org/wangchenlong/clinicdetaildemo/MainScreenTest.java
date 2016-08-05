@@ -29,6 +29,9 @@ public class MainScreenTest {
     public ActivityTestRule<MainActivity> mActivityTestRule =
             new ActivityTestRule<>(MainActivity.class);
 
+    /**
+     * 点击搜索科室按钮, 显示科室详情页面
+     */
     @Test
     public void clickOnGotoSearchClinic_ShowClinicDetailScreen() {
         // 点击跳转页面按钮
