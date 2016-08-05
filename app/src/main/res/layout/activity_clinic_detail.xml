@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.wangchenlong.clinicdetaildemo.ClinicDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_bkg"
+        android:orientation="vertical">
+
+        <!--科室介绍-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/main_horizontal_margin">
+
+            <TextView
+                android:id="@+id/clinic_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/clinic_content_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="@string/clinic_title_default"/>
+
+            <TextView
+                android:id="@+id/clinic_tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="5dp"
+                android:textColor="@color/clinic_content_title"
+                android:textSize="13sp"
+                tools:text="@string/clinic_detail_default"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/divider_line"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider_line"/>
+
+        <!--Tab页面切换-->
+        <android.support.v4.app.FragmentTabHost
+            android:id="@android:id/tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/divider_line"/>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </android.support.v4.app.FragmentTabHost>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/clinic_fl_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_bkg">
+
+        <ProgressBar
+            android:id="@+id/loading_progress"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/progress_bar"
+            android:indeterminateOnly="true"
+            android:maxHeight="240dp"
+            android:maxWidth="240dp"
+            android:minHeight="20dp"
+            android:minWidth="20dp"/>
+
+    </FrameLayout>
+
+</FrameLayout>

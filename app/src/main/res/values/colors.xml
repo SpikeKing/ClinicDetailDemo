@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF1093</color>
+    <color name="colorPrimaryDark">#FF1093</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="action_bar_bkg">#FBFBFB</color>
+
+    <color name="divider_line">#DBDBDB</color>
+    <color name="action_bar_text">#323232</color>
+
+    <!--主页的背景-->
+    <color name="main_bkg">#F1F1F1</color>
+
+    <!--科室介绍的文字颜色-->
+    <color name="clinic_content_title">#3F464B</color>
+    <color name="clinic_content_detail">#4F4E4E</color>
+
+    <!--Tab的文字颜色-->
+    <color name="tab_checked">#39D167</color>
+    <color name="tab_unchecked">#999999</color>
+
+    <!--搜索疾病项可能性的颜色-->
+    <color name="search_disease_cases">#CCCCCC</color>
+</resources>

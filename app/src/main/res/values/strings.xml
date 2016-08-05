@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ClinicDetailDemo</string>
+
+    <string name="goto_search_clinic">跳转搜索结果页面</string>
+
+    <string name="clinic_title_default">心脏与血管外科</string>
+    <string name="clinic_detail_default">心脏外科是外科领域个分支中较年轻的一个学科，主要是以手术治疗心脏病，如心脏搭桥术、先天性心脏病手术、瓣膜置换术等。而所治疗的常见心脏病有：先天性心脏病、瓣膜性心脏病、冠心病、胸主动脉瘤、心包疾病、心脏肿瘤等。心脏外科是外科领域个分支中较年轻的一个学科，主要是以手术治疗心脏病，如心脏搭桥术。</string>
+
+    <string name="related_diseases_tab">相关疾病</string>
+    <string name="star_hospital_tab">明星医院</string>
+</resources>
