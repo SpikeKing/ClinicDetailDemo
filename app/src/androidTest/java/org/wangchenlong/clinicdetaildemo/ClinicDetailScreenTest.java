@@ -42,10 +42,6 @@ public class ClinicDetailScreenTest {
                     Intent result = new Intent(targetContext, ClinicDetailActivity.class);
                     result.putExtra(MainActivity.CLINIC_TITLE, TestData.CLINIC_TITLE);
                     result.putExtra(MainActivity.CLINIC_CONTENT, TestData.CLINIC_CONTENT);
-
-//                    if (Math.random() <= 0.5) TestData.RELATED_DISEASES_DATA_JSON = null;
-//                    if (Math.random() <= 0.5) TestData.STAR_HOSPITALS_DATA_JSON = null;
-
                     return result;
                 }
             };
