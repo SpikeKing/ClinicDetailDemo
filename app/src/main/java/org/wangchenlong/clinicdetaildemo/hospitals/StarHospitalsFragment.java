@@ -36,25 +36,28 @@ public class StarHospitalsFragment extends Fragment {
 
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final StarHospitalsData hospitalsData = new Gson().fromJson(
-                getArguments().getString(ClinicDetailActivity.STAR_HOSPITALS_KEY),
-                StarHospitalsData.class);
-        if (hospitalsData != null && hospitalsData.result != null && !hospitalsData.result.isEmpty()) {
-            mImageView.setVisibility(View.GONE);
-            mLvList.setVisibility(View.VISIBLE);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            final StarHospitalsData hospitalsData = new Gson().fromJson(
+                    getArguments().getString(ClinicDetailActivity.STAR_HOSPITALS_KEY),
+                    StarHospitalsData.class);
+            if (hospitalsData != null && hospitalsData.result != null && !hospitalsData.result.isEmpty()) {
+                mImageView.setVisibility(View.GONE);
+                mLvList.setVisibility(View.VISIBLE);
 
-            StarHospitalsListAdapter adapter = new StarHospitalsListAdapter(getContext(), hospitalsData.result);
-            mLvList.setAdapter(adapter);
-            mLvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Toast.makeText(getContext(), hospitalsData.result.get(i).title,
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            mImageView.setVisibility(View.VISIBLE);
-            mLvList.setVisibility(View.GONE);
+                StarHospitalsListAdapter adapter = new StarHospitalsListAdapter(getContext(), hospitalsData.result);
+                mLvList.setAdapter(adapter);
+                mLvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Toast.makeText(getContext(), hospitalsData.result.get(i).title,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                mImageView.setVisibility(View.VISIBLE);
+                mLvList.setVisibility(View.GONE);
+            }
         }
     }
 }

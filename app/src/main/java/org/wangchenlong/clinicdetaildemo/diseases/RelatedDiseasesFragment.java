@@ -37,21 +37,23 @@ public class RelatedDiseasesFragment extends Fragment {
 
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            final RelatedDiseasesData searchData = new Gson().fromJson(
+                    getArguments().getString(ClinicDetailActivity.RELATED_DISEASES_KEY),
+                    RelatedDiseasesData.class);
 
-        final RelatedDiseasesData searchData = new Gson().fromJson(
-                getArguments().getString(ClinicDetailActivity.RELATED_DISEASES_KEY),
-                RelatedDiseasesData.class);
-
-        if (searchData != null && searchData.result != null && !searchData.result.isEmpty()) {
-            ListAdapter adapter = new RelatedDiseasesListAdapter(getContext(), searchData.result);
-            mLvList.setAdapter(adapter);
-            mLvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Toast.makeText(getContext(), searchData.result.get(i).name,
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
+            if (searchData != null && searchData.result != null && !searchData.result.isEmpty()) {
+                ListAdapter adapter = new RelatedDiseasesListAdapter(getContext(), searchData.result);
+                mLvList.setAdapter(adapter);
+                mLvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Toast.makeText(getContext(), searchData.result.get(i).name,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
     }
 }

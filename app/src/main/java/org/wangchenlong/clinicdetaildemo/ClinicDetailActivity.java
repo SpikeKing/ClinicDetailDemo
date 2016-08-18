@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -34,6 +35,8 @@ public class ClinicDetailActivity extends AppCompatActivity {
     @BindView(android.R.id.tabhost) FragmentTabHost mTabHost; // TabHost页面
     @BindView(R.id.clinic_fl_progress) FrameLayout mFlProgress;
 
+    private LocalBroadcastManager mLocalBroadcastManager;
+
     // Tab的标签
     @StringRes
     private int mTabs[] = {
@@ -42,7 +45,6 @@ public class ClinicDetailActivity extends AppCompatActivity {
     };
 
     private List<Class> mClassList;
-    private List<Bundle> mBundleList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class ClinicDetailActivity extends AppCompatActivity {
 
         mTvTitle.setText(title);
         mTvContent.setText(content);
+
+        mLocalBroadcastManager = LocalBroadcastManager.getInstance(getApplicationContext());
 
         new LoadingDataTasks().execute();
     }
@@ -100,7 +104,7 @@ public class ClinicDetailActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            SystemClock.sleep(3000); // 模拟加载
+            SystemClock.sleep(1000); // 模拟加载
             return null;
         }
     }
@@ -113,27 +117,28 @@ public class ClinicDetailActivity extends AppCompatActivity {
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
         mTabHost.getTabWidget().setDividerDrawable(null);
 
-        Bundle diseasesBundle = new Bundle();
-        diseasesBundle.putString(RELATED_DISEASES_KEY, TestData.RELATED_DISEASES_DATA_JSON);
-
-        Bundle hospitalBundle = new Bundle();
-        hospitalBundle.putString(STAR_HOSPITALS_KEY, TestData.STAR_HOSPITALS_DATA_JSON);
-
         mClassList = new ArrayList<>();
         mClassList.add(RelatedDiseasesFragment.class);
         mClassList.add(StarHospitalsFragment.class);
 
-        mBundleList = new ArrayList<>();
+        // Fragment的启动参数
+        Bundle disease = new Bundle();
+        disease.putSerializable(RELATED_DISEASES_KEY, TestData.RELATED_DISEASES_DATA_JSON);
+        Bundle hospital = new Bundle();
+        hospital.putSerializable(STAR_HOSPITALS_KEY, TestData.STAR_HOSPITALS_DATA_JSON);
+        List<Bundle> bundles = new ArrayList<>();
+        bundles.add(disease);
+        bundles.add(hospital);
 
-        mBundleList.add(diseasesBundle);
-        mBundleList.add(hospitalBundle);
 
         for (int i = 0; i < mTabs.length; i++) {
             // Tab按钮添加文字和图片
             TabHost.TabSpec tabSpec = mTabHost.newTabSpec(getString(mTabs[i])).setIndicator(getTabView(i));
             // 添加Fragment
-            mTabHost.addTab(tabSpec, mClassList.get(i), mBundleList.get(i));
+            mTabHost.addTab(tabSpec, mClassList.get(i), bundles.get(i));
         }
+
+        mTabHost.setCurrentTab(0); // 选择第一个Tab
     }
 
     /**
@@ -143,7 +148,7 @@ public class ClinicDetailActivity extends AppCompatActivity {
      * @return 视图
      */
     private View getTabView(int index) {
-        View view = getLayoutInflater().inflate(R.layout.item_tab, null);
+        View view = getLayoutInflater().inflate(R.layout.item_clinic_tab, null);
         TextView textView = (TextView) view.findViewById(R.id.tab_tv_text);
         textView.setText(mTabs[index]);
         return view;

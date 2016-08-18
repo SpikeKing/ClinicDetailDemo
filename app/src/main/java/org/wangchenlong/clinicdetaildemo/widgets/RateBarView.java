@@ -65,6 +65,7 @@ public class RateBarView extends View {
      */
     public void setRate(float rate) {
         mRate = rate;
+        invalidate();
     }
 
     public void setColorBkg(int colorBkg) {
